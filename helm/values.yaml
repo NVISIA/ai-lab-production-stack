@@ -459,6 +459,11 @@ routerSpec:
   repository: "lmcache/lmstack-router"
   # -- docker tag for the router pod
   tag: "latest"
+  # -- OPTIONAL immutable digest for the router pod, e.g. "sha256:abc123...".
+  # -- When set it takes precedence over `tag` and the image is referenced as
+  # -- repository@digest. Leave empty to use `tag`. Prefer pinning either this
+  # -- or a dated tag over the default mutable "latest".
+  digest: ""
   # -- image pull policy for the router pod
   imagePullPolicy: "Always" # @schema enum:[Always,IfNotPresent,Never]
 

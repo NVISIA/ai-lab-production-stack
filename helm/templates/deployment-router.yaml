@@ -52,7 +52,12 @@ spec:
       {{- end }}
       containers:
       - name: router-container
-        image: "{{ .Values.routerSpec.repository }}:{{ .Values.routerSpec.tag }}"
+        # Pin by immutable digest when routerSpec.digest is set, else fall back
+        # to repository:tag. Backward-compatible: unset digest == previous behaviour.
+        # Added because the chart default tag is the MUTABLE "latest" -- it was
+        # rebuilt underneath a running release on 2026-09-14 and silently swapped
+        # the router build on the next restart.
+        image: "{{ .Values.routerSpec.repository }}{{ if .Values.routerSpec.digest }}@{{ .Values.routerSpec.digest }}{{ else }}:{{ .Values.routerSpec.tag }}{{ end }}"
         imagePullPolicy: "{{ .Values.routerSpec.imagePullPolicy }}"
         {{- if .Values.routerSpec.containerSecurityContext }}
         securityContext:
