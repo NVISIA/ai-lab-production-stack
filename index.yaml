@@ -2,6 +2,26 @@ apiVersion: v1
 entries:
   vllm-stack:
   - apiVersion: v2
+    created: "2026-11-16T16:11:38.945863452Z"
+    dependencies:
+    - condition: kube-prometheus-stack.enabled
+      name: kube-prometheus-stack
+      repository: oci://ghcr.io/prometheus-community/charts
+      version: 82.4.3
+    - condition: prometheus-adapter.enabled
+      name: prometheus-adapter
+      repository: oci://ghcr.io/prometheus-community/charts
+      version: 5.3.0
+    description: The stack deployment of vLLM
+    digest: 53caf3dd7fa999bc90d3382240e355d592a9022e041579e1ed21aad112b67301
+    maintainers:
+    - name: apostac
+    name: vllm-stack
+    type: application
+    urls:
+    - vllm-stack-0.1.27.tgz
+    version: 0.1.27
+  - apiVersion: v2
     created: "2026-11-09T16:11:30.612007297Z"
     dependencies:
     - condition: kube-prometheus-stack.enabled
@@ -552,4 +572,4 @@ entries:
     urls:
     - vllm-stack-0.0.2.tgz
     version: 0.0.2
-generated: "2026-11-09T16:11:30.61214064Z"
+generated: "2026-11-16T16:11:38.946081529Z"
